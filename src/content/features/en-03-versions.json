@@ -1,0 +1,7 @@
+{
+  "locale": "en",
+  "order": 3,
+  "icon": "git-branch",
+  "title": "Versions and drafts",
+  "summary": "Pull and switch between versions. Drafts survive restarts so a large edit never disappears."
+}

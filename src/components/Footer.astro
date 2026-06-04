@@ -1,0 +1,55 @@
+---
+import { t, type Locale } from '../i18n/ui';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const tr = t(locale);
+const downloadMac = import.meta.env.PUBLIC_DOWNLOAD_MAC_URL ?? '#download';
+const downloadWin = import.meta.env.PUBLIC_DOWNLOAD_WIN_URL ?? '#download';
+const year = 2026;
+---
+
+<footer class="border-t border-brand-line bg-white">
+  <div class="container-page grid gap-12 py-14 sm:grid-cols-2 lg:grid-cols-4">
+    <div>
+      <div class="flex items-center gap-2 text-brand-ink">
+        <span class="inline-block h-6 w-6 rounded-md bg-brand-ink"></span>
+        <span class="font-semibold tracking-tight">OmniStore</span>
+      </div>
+      <p class="mt-3 text-sm text-brand-subtle max-w-xs">{tr.hero.subtitle}</p>
+    </div>
+
+    <div>
+      <h4 class="text-xs font-semibold uppercase tracking-wider text-brand-mute">{tr.footer.product}</h4>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li><a href={downloadMac} class="text-brand-subtle hover:text-brand-ink" data-analytics="footer-download-mac">{tr.footer.downloadMac}</a></li>
+        <li><a href={downloadWin} class="text-brand-subtle hover:text-brand-ink" data-analytics="footer-download-win">{tr.footer.downloadWin}</a></li>
+        <li><a href="#pricing" class="text-brand-subtle hover:text-brand-ink">{tr.nav.pricing}</a></li>
+        <li><a href="#features" class="text-brand-subtle hover:text-brand-ink">{tr.nav.features}</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="text-xs font-semibold uppercase tracking-wider text-brand-mute">{tr.footer.company}</h4>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li><a href="/docs" class="text-brand-subtle hover:text-brand-ink">{tr.footer.docs}</a></li>
+        <li><a href={locale === 'zh-CN' ? '/privacy' : '/en/privacy'} class="text-brand-subtle hover:text-brand-ink">{tr.footer.privacy}</a></li>
+        <li><a href={locale === 'zh-CN' ? '/terms' : '/en/terms'} class="text-brand-subtle hover:text-brand-ink">{tr.footer.terms}</a></li>
+        <li><a href="mailto:hello@omnistore.app" class="text-brand-subtle hover:text-brand-ink">{tr.footer.contact}</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="text-xs font-semibold uppercase tracking-wider text-brand-mute">Language</h4>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li><a href="/" class="text-brand-subtle hover:text-brand-ink" hreflang="zh-CN">简体中文</a></li>
+        <li><a href="/en/" class="text-brand-subtle hover:text-brand-ink" hreflang="en">English</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-brand-line">
+    <div class="container-page flex flex-col items-start justify-between gap-2 py-6 text-xs text-brand-mute sm:flex-row sm:items-center">
+      <p>© {year} OmniStore. {tr.footer.rights}.</p>
+      <p>Made for app makers.</p>
+    </div>
+  </div>
+</footer>

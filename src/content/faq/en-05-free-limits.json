@@ -1,0 +1,6 @@
+{
+  "locale": "en",
+  "order": 5,
+  "question": "What are the limits of the free tier?",
+  "answer": "Full metadata, versioning and asset management are included. The only cap is monthly translation quota. Multi-version, heavily-localized projects are a better fit for Pro."
+}

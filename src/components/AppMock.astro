@@ -1,0 +1,72 @@
+---
+import { type Locale } from '../i18n/ui';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const labels = locale === 'zh-CN'
+  ? { app: '我的应用 · v2.4.1', meta: '元数据', loc: '本地化', assets: '截图', compl: '提交检查', title: '应用名称', titleVal: 'Snowfall — Sleep & Focus', sub: '副标题', subVal: '安静好用的桌面助手', desc: '描述（简体中文）', descVal: '为创作者准备的发布工作台，把双商店一次性管好。', kw: '关键词', stores: ['App Store · zh-Hans', 'Google Play · zh-CN', 'App Store · en-US', '+ 9 语言'] }
+  : { app: 'My app · v2.4.1', meta: 'Metadata', loc: 'Localization', assets: 'Assets', compl: 'Pre-submit', title: 'App name', titleVal: 'Snowfall — Sleep & Focus', sub: 'Subtitle', subVal: 'A quiet desktop companion', desc: 'Description (en-US)', descVal: 'A release workspace for makers — both stores in one place.', kw: 'Keywords', stores: ['App Store · en-US', 'Google Play · en-US', 'App Store · zh-Hans', '+ 9 locales'] };
+---
+
+<div class="overflow-hidden rounded-xl border border-brand-line bg-white">
+  <!-- titlebar -->
+  <div class="flex items-center gap-2 border-b border-brand-line bg-brand-paper px-3 py-2">
+    <span class="h-2.5 w-2.5 rounded-full bg-[#ff5f57]"></span>
+    <span class="h-2.5 w-2.5 rounded-full bg-[#febc2e]"></span>
+    <span class="h-2.5 w-2.5 rounded-full bg-[#28c840]"></span>
+    <span class="ml-3 text-[11px] text-brand-mute">{labels.app}</span>
+  </div>
+
+  <div class="grid grid-cols-12">
+    <!-- sidebar -->
+    <aside class="col-span-3 hidden border-r border-brand-line bg-brand-paper/60 p-3 sm:block">
+      <p class="px-2 text-[10px] uppercase tracking-wider text-brand-mute">OmniStore</p>
+      <nav class="mt-3 space-y-1 text-xs">
+        <div class="rounded-md bg-white px-2 py-1.5 font-medium text-brand-ink shadow-sm">{labels.meta}</div>
+        <div class="px-2 py-1.5 text-brand-subtle">{labels.loc}</div>
+        <div class="px-2 py-1.5 text-brand-subtle">{labels.assets}</div>
+        <div class="px-2 py-1.5 text-brand-subtle">{labels.compl}</div>
+      </nav>
+      <div class="mt-6 rounded-md border border-dashed border-brand-line p-2 text-[10px] text-brand-mute">
+        <p class="font-medium text-brand-subtle">v2.4.1</p>
+        <p class="mt-1">draft · 12 changes</p>
+      </div>
+    </aside>
+
+    <!-- main -->
+    <section class="col-span-12 p-4 sm:col-span-9 sm:p-6">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <div class="flex gap-1.5 text-[11px]">
+          {labels.stores.map((s) => (
+            <span class="rounded-full border border-brand-line bg-white px-2 py-0.5 text-brand-subtle">{s}</span>
+          ))}
+        </div>
+        <span class="text-[11px] text-brand-mute">⌘ + S</span>
+      </div>
+
+      <div class="mt-5 space-y-4">
+        <div>
+          <label class="text-[11px] uppercase tracking-wider text-brand-mute">{labels.title}</label>
+          <div class="mt-1 rounded-lg border border-brand-line bg-white px-3 py-2 text-sm">{labels.titleVal}</div>
+        </div>
+        <div>
+          <label class="text-[11px] uppercase tracking-wider text-brand-mute">{labels.sub}</label>
+          <div class="mt-1 rounded-lg border border-brand-line bg-white px-3 py-2 text-sm">{labels.subVal}</div>
+        </div>
+        <div>
+          <label class="text-[11px] uppercase tracking-wider text-brand-mute">{labels.desc}</label>
+          <div class="mt-1 rounded-lg border border-brand-line bg-white px-3 py-2 text-sm leading-relaxed text-brand-subtle">
+            {labels.descVal}
+          </div>
+        </div>
+        <div>
+          <label class="text-[11px] uppercase tracking-wider text-brand-mute">{labels.kw}</label>
+          <div class="mt-1 flex flex-wrap gap-1.5">
+            {['sleep', 'focus', 'sound', 'minimal', 'pomodoro', 'macOS'].map((k) => (
+              <span class="rounded-full border border-brand-line bg-brand-paper px-2 py-0.5 text-[11px] text-brand-subtle">{k}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+---
+import { t, type Locale } from '../i18n/ui';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const tr = t(locale);
+const items = [tr.trust.storeBoth, tr.trust.localEnc, tr.trust.oneClickTr, tr.trust.macWin];
+---
+
+<section class="border-y border-brand-line bg-brand-paper/60 py-6">
+  <div class="container-page flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-xs text-brand-subtle">
+    {items.map((label, i) => (
+      <div class="flex items-center gap-2">
+        {i > 0 && <span class="hidden h-1 w-1 rounded-full bg-brand-mute sm:inline-block"></span>}
+        <span>{label}</span>
+      </div>
+    ))}
+  </div>
+</section>

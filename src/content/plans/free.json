@@ -1,0 +1,8 @@
+{
+  "slug": "free",
+  "order": 1,
+  "priceMonthlyUSD": 0,
+  "priceYearlyUSD": 0,
+  "translationQuotaPerMonth": 5000,
+  "recommended": false
+}

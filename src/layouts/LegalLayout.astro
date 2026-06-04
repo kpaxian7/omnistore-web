@@ -1,0 +1,50 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import type { Locale } from '../i18n/ui';
+
+interface Frontmatter {
+  title: string;
+  description: string;
+  locale: Locale;
+  heading: string;
+  updated: string;
+}
+
+interface Props {
+  frontmatter: Frontmatter;
+}
+
+const { frontmatter } = Astro.props;
+const { title, description, locale, heading, updated } = frontmatter;
+const updatedLabel = locale === 'zh-CN' ? '最后更新' : 'Last updated';
+---
+
+<BaseLayout locale={locale} title={title} description={description} alternatePath={Astro.url.pathname}>
+  <Nav locale={locale} />
+  <main id="main" class="section">
+    <article class="container-page mx-auto max-w-prose">
+      <header class="mb-10">
+        <h1 class="h-section">{heading}</h1>
+        <p class="mt-2 text-sm text-brand-mute">{updatedLabel} · {updated}</p>
+      </header>
+      <div class="prose-content space-y-4 text-base leading-relaxed text-brand-subtle">
+        <slot />
+      </div>
+    </article>
+  </main>
+  <Footer locale={locale} />
+</BaseLayout>
+
+<style is:global>
+  .prose-content h2 {
+    @apply mt-10 text-xl font-semibold tracking-tight text-brand-ink;
+  }
+  .prose-content h3 {
+    @apply mt-6 text-base font-semibold text-brand-ink;
+  }
+  .prose-content p { @apply text-brand-subtle; }
+  .prose-content ul { @apply list-disc pl-6 text-brand-subtle; }
+  .prose-content a { @apply underline text-brand-ink; }
+</style>

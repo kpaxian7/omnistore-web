@@ -1,0 +1,74 @@
+---
+import '../styles/global.css';
+import { localeMeta, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  /** Path for the alternate locale's equivalent page (used for hreflang). */
+  alternatePath?: string;
+}
+
+const { locale, title, description, alternatePath = '/' } = Astro.props;
+const meta = localeMeta[locale];
+const altLocale: Locale = locale === 'zh-CN' ? 'en' : 'zh-CN';
+const altHref = altLocale === 'zh-CN' ? alternatePath : `/en${alternatePath === '/' ? '/' : alternatePath}`;
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const canonical = `${siteUrl}${Astro.url.pathname}`;
+const ogImage = `${siteUrl}/og.png`;
+const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
+---
+
+<!doctype html>
+<html lang={meta.htmlLang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="zh-CN" href={`${siteUrl}/`} />
+    <link rel="alternate" hreflang="en" href={`${siteUrl}/en/`} />
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'OmniStore',
+      operatingSystem: 'macOS, Windows',
+      applicationCategory: 'DeveloperApplication',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    })} />
+    {plausibleDomain && (
+      <script
+        is:inline
+        defer
+        data-domain={plausibleDomain}
+        src="https://plausible.io/js/script.js"
+      ></script>
+    )}
+    <slot name="head" />
+  </head>
+  <body class="min-h-screen antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-brand-ink focus:px-4 focus:py-2 focus:text-sm focus:text-white"
+    >
+      Skip to content
+    </a>
+    <slot />
+    <!-- hidden but accessible for hreflang alt -->
+    <link rel="alternate" hreflang={altLocale} href={altHref} />
+  </body>
+</html>

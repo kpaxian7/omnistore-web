@@ -1,0 +1,6 @@
+{
+  "locale": "en",
+  "order": 6,
+  "question": "How do I upgrade or cancel?",
+  "answer": "Upgrades go through Stripe — no sign-up required on the marketing site. After paying, sign in on the desktop app to use your Pro quota. Cancel any time; access continues until the period ends."
+}

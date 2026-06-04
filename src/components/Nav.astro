@@ -1,0 +1,84 @@
+---
+import { t, localeMeta, type Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const tr = t(locale);
+const altLocale: Locale = locale === 'zh-CN' ? 'en' : 'zh-CN';
+const altHref = altLocale === 'zh-CN' ? '/' : '/en/';
+const downloadMac = import.meta.env.PUBLIC_DOWNLOAD_MAC_URL ?? '#download';
+---
+
+<header class="sticky top-0 z-40 w-full border-b border-brand-line/70 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/65">
+  <div class="container-page flex h-16 items-center justify-between">
+    <a href={localeMeta[locale].href} class="flex items-center gap-2 text-brand-ink" aria-label="OmniStore">
+      <span class="inline-block h-7 w-7 rounded-lg bg-brand-ink"></span>
+      <span class="text-base font-semibold tracking-tight">OmniStore</span>
+    </a>
+
+    <nav class="hidden items-center gap-8 md:flex" aria-label="Primary">
+      <a href="#features" class="text-sm text-brand-subtle hover:text-brand-ink">{tr.nav.features}</a>
+      <a href="#how" class="text-sm text-brand-subtle hover:text-brand-ink">{tr.nav.how}</a>
+      <a href="#pricing" class="text-sm text-brand-subtle hover:text-brand-ink">{tr.nav.pricing}</a>
+      <a href="#faq" class="text-sm text-brand-subtle hover:text-brand-ink">{tr.nav.faq}</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a
+        href={altHref}
+        class="hidden text-sm text-brand-subtle hover:text-brand-ink sm:inline"
+        hreflang={localeMeta[altLocale].htmlLang}
+        aria-label={`Switch to ${localeMeta[altLocale].label}`}
+      >
+        {localeMeta[altLocale].label}
+      </a>
+      <a href={downloadMac} class="btn-primary !px-4 !py-2" data-analytics="nav-download">
+        {tr.nav.download}
+      </a>
+      <button
+        id="nav-toggle"
+        class="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-md border border-brand-line text-brand-ink"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        aria-label="Open menu"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" hidden class="md:hidden border-t border-brand-line bg-white">
+    <nav class="container-page flex flex-col gap-1 py-3" aria-label="Mobile">
+      <a href="#features" class="rounded-md px-2 py-2 text-sm text-brand-ink hover:bg-brand-paper">{tr.nav.features}</a>
+      <a href="#how" class="rounded-md px-2 py-2 text-sm text-brand-ink hover:bg-brand-paper">{tr.nav.how}</a>
+      <a href="#pricing" class="rounded-md px-2 py-2 text-sm text-brand-ink hover:bg-brand-paper">{tr.nav.pricing}</a>
+      <a href="#faq" class="rounded-md px-2 py-2 text-sm text-brand-ink hover:bg-brand-paper">{tr.nav.faq}</a>
+      <a href={altHref} class="rounded-md px-2 py-2 text-sm text-brand-subtle">{localeMeta[altLocale].label}</a>
+    </nav>
+  </div>
+</header>
+
+<script is:inline>
+  const btn = document.getElementById('nav-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (btn && menu) {
+    btn.addEventListener('click', () => {
+      const open = menu.hasAttribute('hidden') ? false : true;
+      if (open) {
+        menu.setAttribute('hidden', '');
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        menu.removeAttribute('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+    menu.querySelectorAll('a').forEach((a) =>
+      a.addEventListener('click', () => {
+        menu.setAttribute('hidden', '');
+        btn.setAttribute('aria-expanded', 'false');
+      })
+    );
+  }
+</script>

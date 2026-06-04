@@ -1,0 +1,6 @@
+{
+  "locale": "en",
+  "order": 2,
+  "question": "Are my keys and credentials safe?",
+  "answer": "Google service-account JSON and Apple Connect API keys are encrypted with the OS safeStorage and never sent to OmniStore servers or written to logs."
+}

@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-white text-brand-ink font-sans;
+  }
+  ::selection {
+    background: #171717;
+    color: #fafafa;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-medium transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-brand-ink text-white hover:bg-black focus-visible:ring-brand-ink;
+  }
+  .btn-ghost {
+    @apply btn border border-brand-line bg-white text-brand-ink hover:bg-brand-paper;
+  }
+  .section {
+    @apply py-20 sm:py-24 lg:py-28;
+  }
+  .eyebrow {
+    @apply inline-block text-xs font-semibold uppercase tracking-[0.14em] text-brand-subtle;
+  }
+  .h-display {
+    @apply text-4xl font-semibold tracking-tight text-brand-ink sm:text-5xl lg:text-6xl;
+    line-height: 1.05;
+  }
+  .h-section {
+    @apply text-3xl font-semibold tracking-tight text-brand-ink sm:text-4xl;
+    line-height: 1.1;
+  }
+  .lede {
+    @apply text-base text-brand-subtle sm:text-lg;
+    line-height: 1.6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

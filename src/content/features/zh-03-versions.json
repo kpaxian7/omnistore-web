@@ -1,0 +1,7 @@
+{
+  "locale": "zh-CN",
+  "order": 3,
+  "icon": "git-branch",
+  "title": "版本管理与草稿",
+  "summary": "按版本拉取、切换；临时保存可跨重启续编，再大的改动也不怕丢。"
+}

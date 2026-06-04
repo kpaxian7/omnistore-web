@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import { t, type Locale } from '../i18n/ui';
+import FeatureIcon from './FeatureIcon.astro';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const tr = t(locale);
+
+const all = await getCollection('features');
+const items = all
+  .filter((f) => f.data.locale === locale)
+  .map((f) => f.data)
+  .sort((a, b) => a.order - b.order);
+---
+
+<section id="features" class="section">
+  <div class="container-page">
+    <header class="mx-auto max-w-2xl text-center">
+      <p class="eyebrow">{tr.features.eyebrow}</p>
+      <h2 class="h-section mt-3">{tr.features.title}</h2>
+      <p class="lede mt-4">{tr.features.subtitle}</p>
+    </header>
+
+    <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {items.map((item) => (
+        <article class="group relative flex flex-col rounded-2xl border border-brand-line bg-white p-6 transition hover:shadow-soft">
+          <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-paper text-brand-ink">
+            <FeatureIcon name={item.icon} />
+          </div>
+          <h3 class="mt-5 text-lg font-semibold tracking-tight text-brand-ink">{item.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-brand-subtle">{item.summary}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

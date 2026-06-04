@@ -1,0 +1,8 @@
+{
+  "slug": "pro",
+  "order": 2,
+  "priceMonthlyUSD": 9,
+  "priceYearlyUSD": 86,
+  "translationQuotaPerMonth": 200000,
+  "recommended": true
+}

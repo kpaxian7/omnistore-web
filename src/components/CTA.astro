@@ -1,0 +1,28 @@
+---
+import { t, type Locale } from '../i18n/ui';
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const tr = t(locale);
+const downloadMac = import.meta.env.PUBLIC_DOWNLOAD_MAC_URL ?? '#download';
+---
+
+<section class="section">
+  <div class="container-page">
+    <div class="rounded-2xl bg-brand-ink p-10 text-white shadow-card sm:p-14">
+      <div class="grid items-center gap-8 lg:grid-cols-[1fr_auto]">
+        <div>
+          <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">{tr.cta.title}</h2>
+          <p class="mt-3 max-w-2xl text-sm text-white/70 sm:text-base">{tr.cta.subtitle}</p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href={downloadMac} class="btn bg-white text-brand-ink hover:bg-brand-paper" data-analytics="cta-download">
+            {tr.cta.primary}
+          </a>
+          <a href="#pricing" class="btn border border-white/30 text-white hover:bg-white/10">
+            {tr.cta.secondary}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

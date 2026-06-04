@@ -1,0 +1,6 @@
+{
+  "locale": "zh-CN",
+  "order": 2,
+  "question": "我的密钥与凭据安全吗？",
+  "answer": "Google 服务账号 JSON 与 Apple Connect 的 API Key 都通过系统 safeStorage 在本地加密保存，永远不上传到 OmniStore 的服务器，也不会出现在日志中。"
+}

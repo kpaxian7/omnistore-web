@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import TrustBar from '../components/TrustBar.astro';
+import Features from '../components/Features.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Pricing from '../components/Pricing.tsx';
+import Faq from '../components/Faq.tsx';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const locale = 'zh-CN' as const;
+
+const plans = (await getCollection('plans')).map((p) => p.data).sort((a, b) => a.order - b.order);
+const faqs = (await getCollection('faq'))
+  .filter((f) => f.data.locale === locale)
+  .map((f) => f.data)
+  .sort((a, b) => a.order - b.order)
+  .map((f) => ({ question: f.question, answer: f.answer }));
+
+const downloadHref = import.meta.env.PUBLIC_DOWNLOAD_MAC_URL ?? '#download';
+const stripeLink = import.meta.env.PUBLIC_STRIPE_PAYMENT_LINK ?? 'mailto:hello@omnistore.app';
+const contactHref = 'mailto:hello@omnistore.app';
+
+const title = 'OmniStore — 一个工作台，搞定 Google Play 与 App Store 的发布';
+const description = '元数据、多语言本地化、版本管理、素材与合规——全部在一个安静好用的桌面工具里完成。';
+---
+
+<BaseLayout locale={locale} title={title} description={description} alternatePath="/">
+  <Nav locale={locale} />
+  <main id="main">
+    <Hero locale={locale} />
+    <TrustBar locale={locale} />
+    <Features locale={locale} />
+    <HowItWorks locale={locale} />
+    <Pricing
+      client:load
+      locale={locale}
+      plans={plans}
+      downloadHref={downloadHref}
+      stripePaymentLink={stripeLink}
+      contactHref={contactHref}
+    />
+    <Faq client:visible locale={locale} items={faqs} />
+    <CTA locale={locale} />
+  </main>
+  <Footer locale={locale} />
+</BaseLayout>
