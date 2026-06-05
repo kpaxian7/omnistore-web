@@ -70,7 +70,7 @@ export const ui: Record<Locale, Dict> = {
     },
     hero: {
       eyebrow: '为应用开发者打造',
-      title: '一个工作台，搞定\nGoogle Play 与 App Store 的发布',
+      title: '一个工作台，搞定\nGoogle Play 与 App Store 的发布',
       subtitle:
         '元数据、多语言本地化、版本管理、素材与合规——全部在一个安静好用的桌面工具里完成。',
       primaryCta: '免费下载',
@@ -182,7 +182,7 @@ export const ui: Record<Locale, Dict> = {
     },
     hero: {
       eyebrow: 'For app developers',
-      title: 'One workspace for\nGoogle Play and App Store releases.',
+      title: 'One workspace for\nGoogle Play and App Store releases.',
       subtitle:
         'Metadata, localization, versioning, assets and compliance — all in one quiet desktop tool.',
       primaryCta: 'Download free',

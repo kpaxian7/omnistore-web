@@ -12,9 +12,11 @@ const downloadMac = import.meta.env.PUBLIC_DOWNLOAD_MAC_URL ?? '#download';
   <div aria-hidden="true" class="pointer-events-none absolute inset-x-0 -top-32 -z-0 mx-auto h-72 max-w-5xl rounded-full bg-[radial-gradient(closest-side,rgba(37,99,235,0.10),transparent)]"></div>
 
   <div class="container-page relative">
-    <div class="mx-auto max-w-3xl text-center">
+    <div class="mx-auto max-w-5xl text-center">
       <p class="eyebrow">{tr.hero.eyebrow}</p>
-      <h1 class="h-display mt-3 whitespace-pre-line">{tr.hero.title}</h1>
+      <h1 class="h-display mt-3">
+        {tr.hero.title.split('\n').map((line) => <span class="block">{line}</span>)}
+      </h1>
       <p class="lede mx-auto mt-6 max-w-2xl">{tr.hero.subtitle}</p>
 
       <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
