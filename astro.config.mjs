@@ -5,8 +5,9 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://omnistore.app',
+  site: 'https://www.releasy.tools',
   trailingSlash: 'ignore',
+  build: { format: 'file' },
   integrations: [react(), mdx(), sitemap()],
   i18n: {
     defaultLocale: 'zh-CN',

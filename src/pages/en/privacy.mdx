@@ -4,21 +4,42 @@ title: Privacy · OmniStore
 description: OmniStore's privacy practices and data handling.
 locale: en
 heading: Privacy
-updated: 2026-06-04
+updated: 2026-06-05
 ---
 
-OmniStore is a local-first desktop app. This page describes what we collect, what we don't, and how we handle store credentials.
+OmniStore is a **local-first** desktop app with a small set of cloud services (account sign-in and translation). This page explains what we collect, what we don't, and how we handle your store credentials.
 
 ## What we collect
 
-- **Account**: only when you subscribe to Pro — Stripe handles payment; our server only stores your email and subscription state.
-- **Anonymous usage**: aggregate page metrics via Plausible. No personal identifiers.
+- **Account identity**: when you sign in with Google or Apple, we receive your email and a stable user identifier (subject), used to create your account and tie it to your plan and usage. Apple sign-in may return a private relay email.
+- **Translation content & usage**: when you use *server translation*, the text you submit is sent to our backend and forwarded to our translation provider (DeepL) to produce translations. We meter usage (characters × target languages) and may cache results by a content fingerprint to reduce cost and latency.
+- **Subscription** (once Pro launches): payments are handled by Stripe; our server only stores your email and subscription status — **never full card details**.
+- **Anonymous site analytics** (if Plausible is enabled): aggregate page metrics only, no personal identifiers.
 
-## What we don't collect
+## What we don't collect / never upload
 
-- Any metadata, screenshots or descriptions edited inside the OmniStore desktop app.
-- Google or Apple credentials — they are encrypted by the OS safeStorage and **never leave your machine**.
+- The metadata, descriptions, keywords, screenshots and build artifacts you edit in the desktop app — these **stay on your machine** and go directly to Apple / Google only when you choose to upload, not through us (except the text you explicitly submit for server translation).
+- Your **Google / Apple store credentials** (Service Account JSON, App Store Connect `.p8` key, Issuer ID / Key ID) — encrypted on-device by the OS secure storage (safeStorage) and **never uploaded** to our servers.
+- Your login tokens are likewise stored encrypted on-device.
+
+## Third parties
+
+- **Apple, Google**: sign-in, plus the store publishing APIs you authorize.
+- **DeepL**: server translation (receives the text you submit).
+- **Stripe** (future): subscription payments.
+- **Plausible** (if enabled): privacy-friendly website analytics.
+
+Each third party has its own privacy policy for the data it processes.
+
+## Retention & your rights
+
+- Account data is retained until you delete your account; translation cache may persist to serve future requests.
+- You can request access, correction or deletion of your account data by email.
+
+## Security
+
+Credentials and tokens are encrypted on-device; backend traffic uses HTTPS; we don't log passwords, tokens or plaintext keys.
 
 ## Contact
 
-Email hello@omnistore.app for any questions.
+For any privacy questions, email **hello@releasy.tools**.

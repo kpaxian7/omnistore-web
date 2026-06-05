@@ -63,11 +63,18 @@ OmniStore（Electron 桌面应用）的对外营销落地页。核心目标：�
 - **桌面端**：下载安装包链接（mac `.dmg` / win `.exe`）；分发走官网直下（非商店，详见对话记录）。
 - 品牌：图标、配色、lucide 图标、安静克制气质与桌面端延续。
 
-## 8. 状态 / 待办
+## 8. 部署（已上线）
 
-当前为 `first commit` 基线，区块/内容/中英双语/定价切换/FAQ 已具备。后续：
+- **域名**：`https://www.releasy.tools`（裸域 `releasy.tools` 与 http 80 均 301 跳到 www）；产品对外仍叫 **OmniStore**（releasy.tools 为托管域名）。`astro.config.mjs` 的 `site` 已设为该域名（影响 canonical/sitemap/OG）。
+- **方式**：`astro build` 出纯静态 `dist/`；服务器（jpserver）nginx **静态 root** 直接服务，约定与隔壁项目一致：`root /etc/nginx/deployment/releasy/dist`（参照 `kpaxian.io`：`/etc/nginx/deployment/kpaxian/dist`）。
+- **流程**：本地 `npm run build` → `rsync dist/` 到服务器 → `nginx -t && systemctl reload nginx`。nginx 配置 `/etc/nginx/conf.d/releasy.tools.conf`（Let's Encrypt 证书 + `try_files $uri $uri/ /index.html` + 静态资源 30d 缓存）。
+- **法务页**：`/privacy`、`/terms`（中），`/en/privacy`、`/en/terms`（英）已写充实，覆盖真实数据流（OAuth 登录拿邮箱、服务端翻译把文案发 DeepL、商店凭据本地加密不出本机）；联系邮箱 `hello@releasy.tools`。
+
+## 9. 状态 / 待办
+
+区块/内容/中英双语/定价切换/FAQ/法务页已具备并上线。后续：
 - 真实产品截图替换占位（从桌面端截「制作截图浮层 / 操作台 / 本地化」）。
 - 定价数据接后端 `GET /v1/config`（或先写死）；CTA 接 Stripe Payment Link / 后端 checkout。
 - 下载分发链接（GitHub Releases / 对象存储）按平台高亮。
 - OG 图、结构化数据、Lighthouse 调优、埋点（Plausible/Vercel Analytics）。
-- 部署 Vercel / Cloudflare Pages + 自定义域名（如 store.kpaxian.io）。
+- CI 自动构建 + 部署（当前为手动 rsync）。
