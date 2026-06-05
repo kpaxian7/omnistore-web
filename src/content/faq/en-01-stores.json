@@ -1,6 +1,6 @@
 {
   "locale": "en",
   "order": 1,
-  "question": "Which stores does OmniStore support?",
+  "question": "Which stores does Releasy support?",
   "answer": "Google Play and the Apple App Store — full metadata, localization, version and asset management. Other stores (Huawei AppGallery, Galaxy Store) can be added later as demand grows."
 }

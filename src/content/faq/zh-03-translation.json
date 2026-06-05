@@ -2,5 +2,5 @@
   "locale": "zh-CN",
   "order": 3,
   "question": "翻译用什么引擎？需要自带 API key 吗？",
-  "answer": "默认使用 OmniStore 托管的翻译引擎，按订阅额度计费、无需自带 key。也支持自带 OpenAI / DeepL key 走自己的渠道。"
+  "answer": "默认使用 Releasy 托管的翻译引擎，按订阅额度计费、无需自带 key。也支持自带 OpenAI / DeepL key 走自己的渠道。"
 }

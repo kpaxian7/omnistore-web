@@ -2,5 +2,5 @@
   "locale": "en",
   "order": 4,
   "question": "Does it run on Windows?",
-  "answer": "Yes. OmniStore is an Electron desktop app with installers for both macOS and Windows."
+  "answer": "Yes. Releasy is an Electron desktop app with installers for both macOS and Windows."
 }

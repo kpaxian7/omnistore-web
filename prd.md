@@ -9,7 +9,7 @@
 
 ## 1. 定位
 
-OmniStore（Electron 桌面应用）的对外营销落地页。核心目标：讲清楚是什么/解决什么痛点 → 展示功能 → 定价 + 转化（下载免费 / 升级 Pro）。不承载账号/支付结算（在后端，见 `../omnistore-server`）。
+**Releasy**（Release easy；Electron 桌面应用，内部项目代号 OmniStore）的对外营销落地页。核心目标：讲清楚是什么/解决什么痛点 → 展示功能 → 定价 + 转化（下载免费 / 升级 Pro）。不承载账号/支付结算（在后端，见 `../omnistore-server`）。
 
 ## 2. 技术栈（已落地）
 
@@ -65,7 +65,7 @@ OmniStore（Electron 桌面应用）的对外营销落地页。核心目标：�
 
 ## 8. 部署（已上线）
 
-- **域名**：`https://www.releasy.tools`（裸域 `releasy.tools` 与 http 80 均 301 跳到 www）；产品对外仍叫 **OmniStore**（releasy.tools 为托管域名）。`astro.config.mjs` 的 `site` 已设为该域名（影响 canonical/sitemap/OG）。
+- **域名**：`https://www.releasy.tools`（裸域 `releasy.tools` 与 http 80 均 301 跳到 www）；产品对外品牌 **Releasy**（Release easy；OmniStore 仅为内部项目代号，站点文案已统一为 Releasy）。`astro.config.mjs` 的 `site` 已设为该域名（影响 canonical/sitemap/OG）。
 - **方式**：`astro build` 出纯静态 `dist/`；服务器（jpserver）nginx **静态 root** 直接服务，约定与隔壁项目一致：`root /etc/nginx/deployment/releasy/dist`（参照 `kpaxian.io`：`/etc/nginx/deployment/kpaxian/dist`）。
 - **流程**：本地 `npm run build` → `rsync dist/` 到服务器 → `nginx -t && systemctl reload nginx`。nginx 配置 `/etc/nginx/conf.d/releasy.tools.conf`（Let's Encrypt 证书 + `try_files $uri $uri/ /index.html` + 静态资源 30d 缓存）。
 - **法务页**：`/privacy`、`/terms`（中），`/en/privacy`、`/en/terms`（英）已写充实，覆盖真实数据流（OAuth 登录拿邮箱、服务端翻译把文案发 DeepL、商店凭据本地加密不出本机）；联系邮箱 `hello@releasy.tools`。

@@ -1,6 +1,6 @@
 {
   "locale": "zh-CN",
   "order": 1,
-  "question": "OmniStore 支持哪些商店？",
+  "question": "Releasy 支持哪些商店？",
   "answer": "目前支持 Google Play 与 Apple App Store 的元数据、本地化、版本与素材管理。未来会按需扩展（如 Huawei AppGallery、Galaxy Store）。"
 }

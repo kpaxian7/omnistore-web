@@ -2,5 +2,5 @@
   "locale": "zh-CN",
   "order": 4,
   "question": "支持 Windows 吗？",
-  "answer": "支持。OmniStore 是基于 Electron 的桌面应用，同时提供 macOS 与 Windows 安装包。"
+  "answer": "支持。Releasy 是基于 Electron 的桌面应用，同时提供 macOS 与 Windows 安装包。"
 }

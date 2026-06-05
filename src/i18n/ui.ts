@@ -91,7 +91,7 @@ export const ui: Record<Locale, Dict> = {
     how: {
       eyebrow: '工作流',
       title: '四步把一个版本送上架',
-      subtitle: '从绑定账号到提交审核，整条路径都不离开 OmniStore。',
+      subtitle: '从绑定账号到提交审核，整条路径都不离开 Releasy。',
       steps: [
         { title: '绑定账号', desc: '一次配置 Google 与 Apple 凭据，本地加密、不出本机。' },
         { title: '编辑元数据 & 本地化', desc: '统一编辑名称、描述、关键词，一键翻译多语言。' },
@@ -156,7 +156,7 @@ export const ui: Record<Locale, Dict> = {
     },
     cta: {
       title: '把发布流程交给一个安静的工具',
-      subtitle: '下载 OmniStore，今天就把下一版本准备好。',
+      subtitle: '下载 Releasy，今天就把下一版本准备好。',
       primary: '免费下载',
       secondary: '查看定价',
     },
@@ -203,7 +203,7 @@ export const ui: Record<Locale, Dict> = {
     how: {
       eyebrow: 'How it works',
       title: 'Four steps from draft to review',
-      subtitle: 'From credential setup to submission, everything stays inside OmniStore.',
+      subtitle: 'From credential setup to submission, everything stays inside Releasy.',
       steps: [
         { title: 'Connect stores', desc: 'Configure Google & Apple credentials once. Encrypted locally, never leaves your machine.' },
         { title: 'Edit metadata & localize', desc: 'Manage titles, descriptions, keywords in one place. Translate to many languages in one click.' },
@@ -268,7 +268,7 @@ export const ui: Record<Locale, Dict> = {
     },
     cta: {
       title: 'A quiet tool for the loud part of shipping',
-      subtitle: 'Download OmniStore and start prepping your next release today.',
+      subtitle: 'Download Releasy and start prepping your next release today.',
       primary: 'Download free',
       secondary: 'See pricing',
     },

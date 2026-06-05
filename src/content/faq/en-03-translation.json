@@ -2,5 +2,5 @@
   "locale": "en",
   "order": 3,
   "question": "Which translation engine do you use? Do I need my own key?",
-  "answer": "By default, OmniStore uses a hosted translation engine billed against your subscription quota — no key needed. You can bring your own OpenAI or DeepL key if you prefer your own pipeline."
+  "answer": "By default, Releasy uses a hosted translation engine billed against your subscription quota — no key needed. You can bring your own OpenAI or DeepL key if you prefer your own pipeline."
 }
