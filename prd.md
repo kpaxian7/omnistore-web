@@ -1,8 +1,9 @@
 # OmniStore 落地页 PRD（当前状态存档）
 
-> 日期：2026-06-05
+> 日期：2026-06-09
 > 性质：**现状快照**——记录官网落地页已落地的形态、信息架构与内容，作为后续迭代基线。
 > 关系：在 `landing-plan.md`（最初方案）基础上记录实际实现状态。
+> 本次更新：换新品牌标识（favicon/apple-touch/OG/manifest + Nav/Footer logo）、标题改 **Poppins Light** + 品牌名 Releasy 斜体、Hero 大标题换行修复；并把法务页/联系方式的过时信息（DeepL→OpenRouter、omnistore.app→releasy.tools）订正。
 > 语言：沟通中文；代码/标识符英文；面向全球开发者，内容中英双语。
 
 ---
@@ -17,7 +18,7 @@
 |---|---|
 | 框架 | **Astro** v6（营销站默认零 JS、SEO/Lighthouse 最佳） |
 | 交互区块 | **React** islands（`Pricing.tsx` 月/年切换、`Faq.tsx` 手风琴） |
-| 样式 | **Tailwind CSS** + `src/styles/global.css` |
+| 样式 | **Tailwind CSS** + `src/styles/global.css`；标题字体 **Poppins Light**（本地 `public/fonts/*.ttf` + `@font-face`），品牌名 **Releasy 斜体** |
 | 内容 | **Astro Content Collections**（JSON + zod schema，`src/content.config.ts`） |
 | 图标 | lucide-react（与桌面端一致） |
 | i18n | 路由 `/`(zh-CN 默认) 与 `/en`(English)，字典 `src/i18n/ui.ts` |
@@ -30,7 +31,7 @@
 `src/pages/index.astro`（zh）与 `src/pages/en/index.astro`（en）拼装区块（`src/components/`）：
 
 1. **Nav**（Logo｜功能｜定价｜FAQ｜语言切换｜下载）
-2. **Hero**（价值主张 + 主/次 CTA + 产品大图，配 `AppMock.astro`）
+2. **Hero**（价值主张 + 主/次 CTA + 产品大图，配 `AppMock.astro`；大标题按 `\n` 分行 + `text-wrap: pretty`，产品名不拆行）
 3. **TrustBar**（信任徽标条）
 4. **Features**（功能区块，`FeatureIcon.astro` + Content Collections 驱动）
 5. **HowItWorks**（工作流时间线）
@@ -65,10 +66,10 @@
 
 ## 8. 部署（已上线）
 
-- **域名**：`https://www.releasy.tools`（裸域 `releasy.tools` 与 http 80 均 301 跳到 www）；产品对外品牌 **Releasy**（Release easy；OmniStore 仅为内部项目代号，站点文案已统一为 Releasy）。`astro.config.mjs` 的 `site` 已设为该域名（影响 canonical/sitemap/OG）。
+- **域名**：`https://www.releasy.tools`（裸域 `releasy.tools` 与 http 80 均 301 跳到 www）；产品对外品牌 **Releasy**（Release easy；OmniStore 仅为内部项目代号，站点文案已统一为 Releasy）。`astro.config.mjs` 的 `site` 已设为该域名（影响 canonical/sitemap/OG）。品牌标识（favicon 16/32、apple-touch-icon、OG 图 `og.png`、PWA `site.webmanifest` + 192/512 图标、Nav/Footer logo）均已换为 Releasy 新标识。
 - **方式**：`astro build` 出纯静态 `dist/`；服务器（jpserver）nginx **静态 root** 直接服务，约定与隔壁项目一致：`root /etc/nginx/deployment/releasy/dist`（参照 `kpaxian.io`：`/etc/nginx/deployment/kpaxian/dist`）。
 - **流程**：本地 `npm run build` → `rsync dist/` 到服务器 → `nginx -t && systemctl reload nginx`。nginx 配置 `/etc/nginx/conf.d/releasy.tools.conf`（Let's Encrypt 证书 + `try_files $uri $uri/ /index.html` + 静态资源 30d 缓存）。
-- **法务页**：`/privacy`、`/terms`（中），`/en/privacy`、`/en/terms`（英）已写充实，覆盖真实数据流（OAuth 登录拿邮箱、服务端翻译把文案发 DeepL、商店凭据本地加密不出本机）；联系邮箱 `hello@releasy.tools`。
+- **法务页**：`/privacy`、`/terms`（中），`/en/privacy`、`/en/terms`（英）已写充实，覆盖真实数据流（OAuth 登录拿邮箱、服务端翻译把文案发 **OpenRouter**、商店凭据本地加密不出本机）；联系邮箱 `hello@releasy.tools`。
 
 ## 9. 状态 / 待办
 
