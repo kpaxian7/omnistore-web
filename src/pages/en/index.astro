@@ -21,8 +21,8 @@ const faqs = (await getCollection('faq'))
   .map((f) => ({ question: f.question, answer: f.answer }));
 
 const downloadHref = import.meta.env.PUBLIC_DOWNLOAD_MAC_URL ?? '#download';
-const stripeLink = import.meta.env.PUBLIC_STRIPE_PAYMENT_LINK ?? 'mailto:hello@omnistore.app';
-const contactHref = 'mailto:hello@omnistore.app';
+const stripeLink = import.meta.env.PUBLIC_STRIPE_PAYMENT_LINK ?? 'mailto:hello@releasy.tools';
+const contactHref = 'mailto:hello@releasy.tools';
 
 const title = 'Releasy — One workspace for Google Play and App Store releases';
 const description = 'Metadata, localization, versioning, assets and compliance — all in one quiet desktop tool.';

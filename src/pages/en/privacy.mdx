@@ -12,7 +12,7 @@ Releasy is a **local-first** desktop app with a small set of cloud services (acc
 ## What we collect
 
 - **Account identity**: when you sign in with Google or Apple, we receive your email and a stable user identifier (subject), used to create your account and tie it to your plan and usage. Apple sign-in may return a private relay email.
-- **Translation content & usage**: when you use *server translation*, the text you submit is sent to our backend and forwarded to our translation provider (DeepL) to produce translations. We meter usage (characters × target languages) and may cache results by a content fingerprint to reduce cost and latency.
+- **Translation content & usage**: when you use *server translation*, the text you submit is sent to our backend and forwarded to our translation provider (OpenRouter) to produce translations. We meter usage (characters × target languages) and may cache results by a content fingerprint to reduce cost and latency.
 - **Subscription** (once Pro launches): payments are handled by Stripe; our server only stores your email and subscription status — **never full card details**.
 - **Anonymous site analytics** (if Plausible is enabled): aggregate page metrics only, no personal identifiers.
 
@@ -25,7 +25,7 @@ Releasy is a **local-first** desktop app with a small set of cloud services (acc
 ## Third parties
 
 - **Apple, Google**: sign-in, plus the store publishing APIs you authorize.
-- **DeepL**: server translation (receives the text you submit).
+- **OpenRouter**: server translation (receives the text you submit).
 - **Stripe** (future): subscription payments.
 - **Plausible** (if enabled): privacy-friendly website analytics.
 
