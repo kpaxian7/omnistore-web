@@ -67,8 +67,9 @@
 ## 8. 部署（已上线）
 
 - **域名**：`https://www.releasy.tools`（裸域 `releasy.tools` 与 http 80 均 301 跳到 www）；产品对外品牌 **Releasy**（Release easy；OmniStore 仅为内部项目代号，站点文案已统一为 Releasy）。`astro.config.mjs` 的 `site` 已设为该域名（影响 canonical/sitemap/OG）。品牌标识（favicon 16/32、apple-touch-icon、OG 图 `og.png`、PWA `site.webmanifest` + 192/512 图标、Nav/Footer logo）均已换为 Releasy 新标识。
-- **方式**：`astro build` 出纯静态 `dist/`；服务器（jpserver）nginx **静态 root** 直接服务，约定与隔壁项目一致：`root /etc/nginx/deployment/releasy/dist`（参照 `kpaxian.io`：`/etc/nginx/deployment/kpaxian/dist`）。
-- **流程**：本地 `npm run build` → `rsync dist/` 到服务器 → `nginx -t && systemctl reload nginx`。nginx 配置 `/etc/nginx/conf.d/releasy.tools.conf`（Let's Encrypt 证书 + `try_files $uri $uri/ /index.html` + 静态资源 30d 缓存）。
+- **服务器**：**`jp2`**（`64.176.51.21`，Vultr，Ubuntu 24.04，nginx 1.24；SSH 别名 `ssh jp2`）。2026-10 从旧服务器 `jp`（`38.47.125.171`）迁移而来，站点目录与 nginx 配置路径不变；旧服务器已停用，不要再往 `jp` 部署。站点走 Cloudflare 橙云代理，DNS 指向 Cloudflare 而非服务器 IP。
+- **方式**：`astro build` 出纯静态 `dist/`；jp2 上 nginx **静态 root** 直接服务，约定与隔壁项目一致：`root /etc/nginx/deployment/releasy/dist`（参照 `kpaxian.io`：`/etc/nginx/deployment/kpaxian/dist`）。
+- **流程**：本地 `npm run build` → `rsync -az dist/ jp2:/etc/nginx/deployment/releasy/dist/` → 服务器 `nginx -t && systemctl reload nginx`。nginx 配置 `/etc/nginx/conf.d/releasy.tools.conf`（Let's Encrypt 证书 + `try_files $uri $uri/ /index.html` + 静态资源 30d 缓存）。
 - **法务页**：`/privacy`、`/terms`（中），`/en/privacy`、`/en/terms`（英）已写充实，覆盖真实数据流（OAuth 登录拿邮箱、服务端翻译把文案发 **OpenRouter**、商店凭据本地加密不出本机）；联系邮箱 `hello@releasy.tools`。
 
 ## 9. 状态 / 待办
